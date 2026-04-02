@@ -4,9 +4,8 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { TopBarComponent } from './top-bar/top-bar.component';
-import { MovieTreeComponent } from './movie-tree/movie-tree.component';
-import { MovieTreeNodeComponent } from './movie-tree-node/movie-tree-node.component';
+import { TopBarComponent } from './component/top-bar/top-bar.component';
+import { MovieTreeComponent } from './component/movie-tree/movie-tree.component';
 
 @NgModule({
   imports: [

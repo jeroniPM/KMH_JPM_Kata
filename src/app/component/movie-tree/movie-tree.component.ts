@@ -1,8 +1,8 @@
 import { Component, OnInit, signal } from '@angular/core';
-import { TITLES, SEASONS, EPISODES } from '../movies';
+import { TITLES, SEASONS, EPISODES } from '../../domain/movies';
 import { NgFor, NgStyle } from '@angular/common';
 import { MovieTreeNodeComponent } from '../movie-tree-node/movie-tree-node.component';
-import { TreeNode } from '../model/tree-node'
+import { TreeNode } from '../../model/tree-node'
 
 @Component({
   selector: 'app-movie-tree',
