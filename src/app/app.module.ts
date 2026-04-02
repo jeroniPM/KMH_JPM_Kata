@@ -13,12 +13,11 @@ import { MovieTreeNodeComponent } from './movie-tree-node/movie-tree-node.compon
     BrowserModule,
     ReactiveFormsModule,
     RouterModule.forRoot([{ path: '', component: MovieTreeComponent }]),
+    MovieTreeComponent
   ],
   declarations: [
     AppComponent,
     TopBarComponent,
-    MovieTreeComponent,
-    MovieTreeNodeComponent,
   ],
   bootstrap: [AppComponent],
 })

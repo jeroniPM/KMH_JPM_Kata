@@ -1,17 +1,5 @@
-<p>Movie tree</p>
 <input placeholder="Search movie..." />
 
-<!-- EXAMPLE TREE NODE -->
-<app-movie-tree-node [id]="titles[0].id" [name]="titles[0].name" [icon]="titles[0].icon"></app-movie-tree-node>
-<!-- END EXAMPLE TREE NODE -->
-
-
-<!-- EXAMPLE SHOW ALL DATA -->
-<div *ngFor="let title of titles">{{ title.id }} - {{ title.name }} <i class="material-icons">{{ title.icon }}</i></div>
-
-<div *ngFor="let season of seasons">{{ season.id }} - {{ season.name }} <i class="material-icons">{{ season.icon }}</i></div>
-
-<div *ngFor="let episode of episodes">
-  {{ episode.id }} - {{ episode.name }} <i class="material-icons">{{ episode.icon }}</i>
-</div>
-<!-- END EXAMPLE SHOW ALL DATA -->
+@for (node of nodeTree(); track node.id) {
+  <app-movie-tree-node [node]="node"/>
+}

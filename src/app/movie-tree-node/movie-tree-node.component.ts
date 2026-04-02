@@ -1,19 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { TreeNode } from '../model/tree-node';
 
 @Component({
   selector: 'app-movie-tree-node',
   templateUrl: './movie-tree-node.component.html',
-  styleUrls: ['./movie-tree-node.component.css']
+  styleUrls: ['./movie-tree-node.component.css'],
+  standalone: true
 })
-export class MovieTreeNodeComponent implements OnInit {
+export class MovieTreeNodeComponent {
 
-  @Input() id!: number;
-  @Input() name: string = '';
-  @Input() icon: string = '';
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  @Input() node!: TreeNode;
 }

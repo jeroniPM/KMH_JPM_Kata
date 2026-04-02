@@ -1,20 +1,42 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { TITLES, SEASONS, EPISODES } from '../movies';
+import { NgFor, NgStyle } from '@angular/common';
+import { MovieTreeNodeComponent } from '../movie-tree-node/movie-tree-node.component';
+import { TreeNode } from '../model/tree-node'
 
 @Component({
   selector: 'app-movie-tree',
   templateUrl: './movie-tree.component.html',
-  styleUrls: ['./movie-tree.component.css']
+  styleUrls: ['./movie-tree.component.css'],
+  imports: [
+    NgFor,
+    MovieTreeNodeComponent
+  ],
+  standalone: true
 })
-export class MovieTreeComponent implements OnInit {
+export class MovieTreeComponent {
 
-  public titles = TITLES;
-  public seasons = SEASONS;
-  public episodes = EPISODES;
+  titles = TITLES;
+  seasons = SEASONS;
+  episodes = EPISODES;
 
-  constructor() { }
+  movieTree: any[] = [];
+  isHidden = true;
+  nodeTree = signal(
+    this.buildNodeTree(TITLES, SEASONS, EPISODES)
+  );
 
-  ngOnInit() {
+  buildNodeTree(titles: TreeNode[], seasons: TreeNode[], episodes: TreeNode[]): TreeNode[] {
+    return titles.map(title => ({
+      ...title,
+      children: seasons
+        .filter(season => season.title_id === title.id)
+        .map(season => ({
+          ...season,
+          children: episodes
+            .filter(ep => ep.season_id === season.id)
+        }))
+    }));
   }
 
 }
