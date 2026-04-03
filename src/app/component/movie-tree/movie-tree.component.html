@@ -1,5 +1,5 @@
 <input placeholder="Search movie..." />
 
-@for (node of nodeTree(); track node.id) {
+@for (node of appStore.nodeTree(); track node.id) {
   <app-movie-tree-node [node]="node"/>
 }

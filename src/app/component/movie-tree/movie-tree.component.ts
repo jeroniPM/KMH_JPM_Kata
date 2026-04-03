@@ -1,8 +1,9 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, signal, inject } from '@angular/core';
 import { TITLES, SEASONS, EPISODES } from '../../domain/movies';
 import { NgFor, NgStyle } from '@angular/common';
 import { MovieTreeNodeComponent } from '../movie-tree-node/movie-tree-node.component';
 import { TreeNode } from '../../model/tree-node'
+import { AppStore } from '../../service/app-store'
 
 @Component({
   selector: 'app-movie-tree',
@@ -10,33 +11,19 @@ import { TreeNode } from '../../model/tree-node'
   styleUrls: ['./movie-tree.component.css'],
   imports: [
     NgFor,
-    MovieTreeNodeComponent
+    MovieTreeNodeComponent,
   ],
   standalone: true
 })
-export class MovieTreeComponent {
+export class MovieTreeComponent implements OnInit {
 
   titles = TITLES;
   seasons = SEASONS;
   episodes = EPISODES;
+  
+  appStore = inject(AppStore)
 
-  movieTree: any[] = [];
-  isHidden = true;
-  nodeTree = signal(
-    this.buildNodeTree(TITLES, SEASONS, EPISODES)
-  );
-
-  buildNodeTree(titles: TreeNode[], seasons: TreeNode[], episodes: TreeNode[]): TreeNode[] {
-    return titles.map(title => ({
-      ...title,
-      children: seasons
-        .filter(season => season.title_id === title.id)
-        .map(season => ({
-          ...season,
-          children: episodes
-            .filter(ep => ep.season_id === season.id)
-        }))
-    }));
+  ngOnInit() {
+    this.appStore.buildNodeTree(TITLES, SEASONS, EPISODES);
   }
-
 }

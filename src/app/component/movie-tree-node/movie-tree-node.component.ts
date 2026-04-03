@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgIf, NgFor } from '@angular/common';
 import { TreeNode } from '../../model/tree-node';
+import { AppStore } from '../../service/app-store';
 
 @Component({
   selector: 'app-movie-tree-node',
@@ -12,5 +13,13 @@ export class MovieTreeNodeComponent {
 
   @Input() node!: TreeNode;
 
-  // private store = inject(StoreService);
+  private store = inject(AppStore);
+
+  removeNode() {
+    this.store.removeNode(this.node.id, this.node.title_id, this.node.season_id);
+  }
+
+  addNode() {
+    this.store.addNode(this.node.id, this.node.title_id, this.node.season_id);
+  }
 }
