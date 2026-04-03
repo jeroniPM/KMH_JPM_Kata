@@ -1,5 +1,5 @@
-<input placeholder="Search movie..." />
+<input #searchInput placeholder="Search movie..." (input)="updateSearchText(searchInput.value)"/>
 
 @for (node of appStore.nodeTree(); track node.id) {
-  <app-movie-tree-node [node]="node"/>
+  <app-movie-tree-node [node]="node" [searchText]="searchText"/>
 }

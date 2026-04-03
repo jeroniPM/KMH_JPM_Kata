@@ -1,5 +1,5 @@
-import { Component, Input, OnInit, inject, signal } from '@angular/core';
-import { NgIf, NgFor } from '@angular/common';
+import { Component, Input, OnInit, inject, signal, computed, Signal } from '@angular/core';
+import { NgIf, NgFor, NgStyle } from '@angular/common';
 import { TreeNode } from '../../model/tree-node';
 import { AppStore } from '../../service/app-store';
 
@@ -7,18 +7,35 @@ import { AppStore } from '../../service/app-store';
   selector: 'app-movie-tree-node',
   templateUrl: './movie-tree-node.component.html',
   styleUrls: ['./movie-tree-node.component.css'],
+  imports: [NgFor, NgIf, NgStyle],
   standalone: true
 })
 export class MovieTreeNodeComponent {
 
+  readonly MIN_SEARCH_CHARACTERS = 3;
+
   @Input() node!: TreeNode;
+  @Input() searchText!: Signal<string>;
 
   private store = inject(AppStore);
 
-  showChildren = signal(false);
+  toggleChildren = signal(false);
 
-  showChildrenToggle() {
-    this.showChildren.update(value => !value);
+  showChildren = computed(() => this.toggleChildren() || this.shouldExpandForPartialMatch());
+
+  isMatchingSearch = computed(() => {
+    const search = this.searchText().toLowerCase();
+    return this.hasMinSearchCharacters(search) && this.node.name.toLowerCase().includes(search);
+  });
+
+  shouldExpandForPartialMatch = computed(() => {
+    const search = this.searchText().toLowerCase();
+    return this.hasMinSearchCharacters(search) &&
+    (this.node.name.toLowerCase().includes(search) || search.includes(this.node.name.toLowerCase()) );
+  })
+
+  updateToggle() {
+    this.toggleChildren.update(value => !value);
   }
 
   removeNode() {
@@ -26,6 +43,14 @@ export class MovieTreeNodeComponent {
   }
 
   addNode() {
+    if (!this.showChildren()) {
+      this.toggleChildren();
+    }
+
     this.store.addNode(this.node.id, this.node.title_id, this.node.season_id);
+  }
+
+  private hasMinSearchCharacters(search: string) : boolean {
+    return search.length >= this.MIN_SEARCH_CHARACTERS;
   }
 }

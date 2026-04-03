@@ -1,6 +1,6 @@
 import { Component, OnInit, signal, inject } from '@angular/core';
 import { TITLES, SEASONS, EPISODES } from '../../domain/movies';
-import { NgFor, NgStyle } from '@angular/common';
+import { NgFor } from '@angular/common';
 import { MovieTreeNodeComponent } from '../movie-tree-node/movie-tree-node.component';
 import { TreeNode } from '../../model/tree-node'
 import { AppStore } from '../../service/app-store'
@@ -23,7 +23,13 @@ export class MovieTreeComponent implements OnInit {
   
   appStore = inject(AppStore)
 
+  searchText = signal('');
+
   ngOnInit() {
     this.appStore.buildNodeTree(TITLES, SEASONS, EPISODES);
+  }
+
+  updateSearchText(text: string) {
+    this.searchText.set(text);
   }
 }
