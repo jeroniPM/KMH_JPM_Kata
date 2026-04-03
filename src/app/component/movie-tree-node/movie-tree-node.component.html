@@ -1,6 +1,6 @@
 <div>
   @if (node.children?.length) {
-    <i class="material-icons">arrow_right</i>
+    <i class="material-icons" (click)="showChildrenToggle()">arrow_right</i>
   }
   {{ node.name }}
   <i class="material-icons">{{ node.icon }}</i>
@@ -10,7 +10,7 @@
   }
 </div>
 
-@if (node.children?.length) {
+@if (node.children?.length && showChildren()) {
   <div style="margin-left: 40px;">
     @for (node of node.children; track node.id) {
       <app-movie-tree-node [node]="node"></app-movie-tree-node>
