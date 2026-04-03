@@ -1,13 +1,14 @@
 import { Component, Input, OnInit, inject, signal, computed, Signal } from '@angular/core';
-import { NgIf, NgFor, NgStyle } from '@angular/common';
+import { NgIf, NgFor, NgStyle, NgClass } from '@angular/common';
 import { TreeNode } from '../../model/tree-node';
 import { AppStore } from '../../service/app-store';
+import { TooltipWrapperComponent } from '../tooltip/tooltip-wrapper.component';
 
 @Component({
   selector: 'app-movie-tree-node',
   templateUrl: './movie-tree-node.component.html',
   styleUrls: ['./movie-tree-node.component.css'],
-  imports: [NgFor, NgIf, NgStyle],
+  imports: [NgFor, NgIf, NgStyle, NgClass, TooltipWrapperComponent],
   standalone: true
 })
 export class MovieTreeNodeComponent {

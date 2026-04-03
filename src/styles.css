@@ -12,12 +12,6 @@ body {
   margin: 0;
 }
 
-.container {
-  background: #f5f7fa;
-  height: calc(100vh - 68px);
-  padding: 16px;
-}
-
 .movie-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

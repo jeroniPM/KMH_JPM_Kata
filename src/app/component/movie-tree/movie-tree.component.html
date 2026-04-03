@@ -1,4 +1,4 @@
-<input #searchInput placeholder="Search movie..." (input)="updateSearchText(searchInput.value)"/>
+<input id="search-input" #searchInput placeholder="Search movie..." (input)="updateSearchText(searchInput.value)"/>
 
 <div class="movie-grid-root">
   @for (node of appStore.nodeTree(); track node.id) {

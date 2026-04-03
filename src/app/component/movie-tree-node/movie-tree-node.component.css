@@ -1,6 +1,7 @@
 :host {
     .movie-card {
-        border: 1px blue solid;
+        position: relative;
+        border: 1px solid #b0c4de; 
         background: white;
         border-radius: 10px;
         padding: 10px;
@@ -15,16 +16,47 @@
         background: #e6f0ff;
         cursor: pointer;
     }
+    .movie-matching-title {
+        background-color: lightblue;
+    }
     .movie-title {
         display: flex;
         flex-direction: row;
         gap: 5px;
         align-items: center;
     }
+    .movie-title-text {
+        padding: 2px;
+    }
     .movie-container {
         display: flex;
         flex-direction: column;
         gap: 5px;
         align-items: center;
+    }
+    .movie-icon {
+        padding: 5px;
+    }
+    .movie-icon:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        cursor: pointer;
+    }
+    .remove-icon {
+        color: slategrey;
+        cursor: pointer;
+    }
+    .remove-icon:hover {
+        color: darkslategrey;
+    }
+    .add-icon {
+        color: cadetblue;
+        cursor: pointer;
+    }
+    .add-icon:hover {
+        color: #3d8b8b;
+    }
+    .rotate-to-right {
+        transform: rotate(90deg);
     }
 }

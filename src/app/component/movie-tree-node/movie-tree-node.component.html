@@ -3,18 +3,24 @@
     <div class="movie-title">
       @if (node.children?.length) {
         <i class="material-icons"
-           [ngStyle]="showChildren() ? {'transform': 'rotate(90deg)'}: {}">
-          {{ true ? 'arrow_right' : 'arrow_down' }}
+           [ngClass]="showChildren() ? 'rotate-to-right': ''">
+          arrow_right
         </i>
       }
-      <div [ngStyle]="isMatchingSearch() ? {'background-color': 'lightblue'} : {}" style="padding: 2px;">{{ node.name }}</div>
+      <div [ngClass]="isMatchingSearch() ? 'movie-matching-title' : ''" class="movie-title-text">{{ node.name }}</div>
     </div>
-    <i class="material-icons">{{ node.icon }}</i>
+    <tooltip-wrapper [text]="'See the movie detail'">
+      <i class="material-icons md-36 movie-icon">{{ node.icon }}</i>
+    </tooltip-wrapper>
   </div>
   <div>
-    <i class="material-icons md-36" style="color: slategrey; cursor: pointer;" (click)="removeNode($event)">disabled_by_default</i>
+    <tooltip-wrapper [text]="'Delete this movie'">
+      <i class="material-icons md-36 remove-icon" (click)="removeNode($event)">disabled_by_default</i>
+    </tooltip-wrapper>
     @if (!node.season_id) {
-      <i class="material-icons md-36" style="color: cadetblue; cursor: pointer;" (click)="addNode($event)">add_circle</i>
+      <tooltip-wrapper [text]="'Add a new movie'">
+        <i class="material-icons md-36 add-icon" (click)="addNode($event)">add_circle</i>
+      </tooltip-wrapper>
     }
   </div>
 </div>
