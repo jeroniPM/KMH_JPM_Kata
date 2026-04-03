@@ -1,21 +1,26 @@
-<div style="display: flex; flex-direction: row; align-items: center; gap: 10px">
-  <div style="display: flex; flex-direction: row; gap: 5px; align-items: center;">
-    @if (node.children?.length) {
-      <i class="material-icons" (click)="updateToggle()">arrow_right</i>
-    }
-    <div [ngStyle]="isMatchingSearch() ? {'background-color': 'lightblue'} : {}" style="padding: 2px;">{{ node.name }}</div>
+<div class="movie-card" (click)="updateToggle()">
+  <div class="movie-container">
+    <div class="movie-title">
+      @if (node.children?.length) {
+        <i class="material-icons"
+           [ngStyle]="showChildren() ? {'transform': 'rotate(90deg)'}: {}">
+          {{ true ? 'arrow_right' : 'arrow_down' }}
+        </i>
+      }
+      <div [ngStyle]="isMatchingSearch() ? {'background-color': 'lightblue'} : {}" style="padding: 2px;">{{ node.name }}</div>
+    </div>
     <i class="material-icons">{{ node.icon }}</i>
   </div>
   <div>
-    <i class="material-icons" style="color: slategrey; cursor: pointer;" (click)="removeNode()">disabled_by_default</i>
+    <i class="material-icons md-36" style="color: slategrey; cursor: pointer;" (click)="removeNode($event)">disabled_by_default</i>
     @if (!node.season_id) {
-      <i class="material-icons" style="color: cadetblue; cursor: pointer;" (click)="addNode()">add_circle</i>
+      <i class="material-icons md-36" style="color: cadetblue; cursor: pointer;" (click)="addNode($event)">add_circle</i>
     }
   </div>
 </div>
 
 @if (node.children?.length && showChildren()) {
-  <div style="margin-left: 40px;">
+  <div class="movie-grid">
     @for (node of node.children; track node.id) {
       <app-movie-tree-node [node]="node" [searchText]="searchText"></app-movie-tree-node>
     }

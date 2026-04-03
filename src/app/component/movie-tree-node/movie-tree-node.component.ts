@@ -38,13 +38,17 @@ export class MovieTreeNodeComponent {
     this.toggleChildren.update(value => !value);
   }
 
-  removeNode() {
+  removeNode(event: MouseEvent) {
+    event.stopPropagation();
+
     this.store.removeNode(this.node.id, this.node.title_id, this.node.season_id);
   }
 
-  addNode() {
+  addNode(event: MouseEvent) {
+    event.stopPropagation();
+
     if (!this.showChildren()) {
-      this.toggleChildren();
+      this.updateToggle();
     }
 
     this.store.addNode(this.node.id, this.node.title_id, this.node.season_id);

@@ -13,8 +13,21 @@ body {
 }
 
 .container {
-  display: flex;
-  flex-direction: row;
+  background: #f5f7fa;
+  height: calc(100vh - 68px);
+  padding: 16px;
+}
+
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.movie-grid-root {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
 }
 
 router-outlet + *  {
@@ -103,6 +116,8 @@ label {
   color: #1976d2;
   padding-right: 4px;
 }
+
+.material-icons.md-36 { font-size: 36px; }
 
 /* Top Bar */
 
