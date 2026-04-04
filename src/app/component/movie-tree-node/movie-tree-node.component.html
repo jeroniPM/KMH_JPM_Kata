@@ -3,7 +3,7 @@
   <div class="movie-container">
     <div class="movie-title">
       @if (node.children?.length) {
-        <i class="material-icons"
+        <i class="material-icons toggle-icon"
            [ngClass]="showChildren() ? 'rotate-to-right': ''">
            arrow_right
         </i>
@@ -14,19 +14,19 @@
       </div>
     </div>
 
-    <tooltip-wrapper [text]="'See the movie detail'" (click)="openDialog($event)">
+    <app-tooltip-wrapper [text]="'See the movie detail'" (click)="openDialog($event)">
       <i class="material-icons md-36 movie-icon">{{ node.icon }}</i>
-    </tooltip-wrapper>
+    </app-tooltip-wrapper>
   </div>
 
-  <div>
-    <tooltip-wrapper [text]="'Delete this movie'">
+  <div class="movie-actions">
+    <app-tooltip-wrapper [text]="'Delete this movie'">
       <i class="material-icons md-36 remove-icon" (click)="removeNode($event)">disabled_by_default</i>
-    </tooltip-wrapper>
+    </app-tooltip-wrapper>
     @if (!node.season_id) {
-      <tooltip-wrapper [text]="'Add a new movie'">
+      <app-tooltip-wrapper [text]="'Add a new movie'">
         <i class="material-icons md-36 add-icon" (click)="addNode($event)">add_circle</i>
-      </tooltip-wrapper>
+      </app-tooltip-wrapper>
     }
   </div>
 

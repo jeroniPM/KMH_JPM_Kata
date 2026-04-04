@@ -5,7 +5,7 @@ import { Component, Input } from '@angular/core';
 */
 
 @Component({
-  selector: 'tooltip-wrapper',
+  selector: 'app-tooltip-wrapper',
   standalone: true,
   template: `
     <div class="tooltip">

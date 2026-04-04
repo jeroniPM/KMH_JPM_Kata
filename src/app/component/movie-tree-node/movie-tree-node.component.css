@@ -26,6 +26,7 @@
         align-items: center;
     }
     .movie-title-text {
+        font-weight: 600;
         padding: 2px;
     }
     .movie-container {
@@ -33,6 +34,11 @@
         flex-direction: column;
         gap: 5px;
         align-items: center;
+    }
+    .movie-actions {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
     }
     .movie-icon {
         padding: 5px;
@@ -55,6 +61,10 @@
     }
     .add-icon:hover {
         color: #3d8b8b;
+    }
+    .toggle-icon {
+        color: steelblue;
+        cursor: pointer;
     }
     .rotate-to-right {
         transform: rotate(90deg);
