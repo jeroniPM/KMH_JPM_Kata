@@ -1,22 +1,22 @@
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { TopBarComponent } from './component/top-bar/top-bar.component';
 import { MovieTreeComponent } from './component/movie-tree/movie-tree.component';
+import { TopBarComponent } from './component/top-bar/top-bar.component';
 
 @NgModule({
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     RouterModule.forRoot([{ path: '', component: MovieTreeComponent }]),
-    MovieTreeComponent
+    MovieTreeComponent,
+    TopBarComponent,
   ],
   declarations: [
     AppComponent,
-    TopBarComponent,
   ],
   bootstrap: [AppComponent],
 })

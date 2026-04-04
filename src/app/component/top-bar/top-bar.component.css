@@ -5,3 +5,15 @@ Copyright Google LLC. All Rights Reserved.
 Use of this source code is governed by an MIT-style license that
 can be found in the LICENSE file at http://angular.io/license
 */
+
+:host ::ng-deep app-tooltip-wrapper .tooltiptext {
+  left: auto !important;
+  right: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 6px !important;
+}
+
+:host app-tooltip-wrapper {
+  opacity: 0.6;
+  cursor: default;
+}
