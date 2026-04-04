@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { AppStore } from '../../core/store/app-store';
+import { MovieStore } from '../../core/store/movie-store';
 import { EPISODES, SEASONS, TITLES } from '../../domain/movies';
 import { DialogData } from '../../model/dialog-data';
 import { DialogComponent } from '../dialog/dialog.component';
@@ -25,7 +25,7 @@ export class MovieTreeComponent implements OnInit {
   showDialog = signal(false);
   dialogData: DialogData = {} as DialogData;
 
-  appStore = inject(AppStore)
+  appStore = inject(MovieStore)
 
   ngOnInit() {
     this.appStore.buildNodeTree(TITLES, SEASONS, EPISODES);

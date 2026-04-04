@@ -4,7 +4,7 @@ import { TreeNode } from '../../model/tree-node';
 @Injectable({
     providedIn: 'root',
 })
-export class AppStore {
+export class MovieStore {
   private nodeTreeData = signal<TreeNode[]>([]);
 
   readonly nodeTree = this.nodeTreeData.asReadonly();
@@ -38,7 +38,7 @@ export class AppStore {
               }
         );
       }
-  
+
       if (this.isEpisode(season_id)) {
         return titles.map(title => ({
           ...title,
@@ -52,33 +52,33 @@ export class AppStore {
           )
         }));
       }
-  
+
       return titles;
     });
   }
 
   addNode(id: number, title_id?: number, season_id?: number) {
-    const nodeId = this.getRandomInt();
-  
     this.nodeTreeData.update(titles => {
       if (this.isTitle(title_id, season_id)) {
-        return titles.map(title =>
-          title.id !== id
+        return titles.map(title => {
+          const nextChildId = this.getNextChildId(title.children);
+
+          return title.id !== id
             ? title
             : {
                 ...title,
                 children: [
                   ...(title.children ?? []),
                   {
-                    id: nodeId,
-                    name: `${title.name} S${nodeId}`,
+                    id: nextChildId,
+                    name: `${title.name} S${nextChildId}`,
                     icon: title.icon,
                     title_id: title.id,
                     children: []
                   }
                 ]
-              }
-        );
+              };
+        });
       }
 
       if (this.isSeason(title_id)) {
@@ -87,28 +87,38 @@ export class AppStore {
             ? title
             : {
                 ...title,
-                children: title.children.map(season =>
-                  season.id !== id
+                children: title.children.map(season => {
+                  const nextChildId = this.getNextChildId(season.children);
+
+                  return season.id !== id
                     ? season
                     : {
                         ...season,
                         children: [
                           ...(season.children ?? []),
                           {
-                            id: nodeId,
-                            name: `${season.name} Ep ${nodeId}`,
+                            id: nextChildId,
+                            name: `${season.name} Ep ${nextChildId}`,
                             icon: season.icon,
                             season_id: season.id
                           }
                         ]
-                      }
-                )
+                      };
+                })
               }
         );
       }
 
       return titles;
     });
+  }
+
+  private getNextChildId(children?: TreeNode[]): number {
+    if (!children?.length) {
+      return 1;
+    }
+
+    return children[children.length - 1].id + 1;
   }
 
   private isTitle(title_id: number | undefined, season_id: number | undefined): boolean {
@@ -121,10 +131,5 @@ export class AppStore {
 
   private isEpisode(season_id: number | undefined): boolean {
     return season_id !== undefined;
-  }
-
-  private getRandomInt(): number {
-    // Random integer between 0 - 100
-    return Math.floor(Math.random() * 100);
   }
 }
