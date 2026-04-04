@@ -1,11 +1,10 @@
-import { Component, OnInit, signal, inject } from '@angular/core';
-import { TITLES, SEASONS, EPISODES } from '../../domain/movies';
-import { NgFor, NgIf } from '@angular/common';
-import { MovieTreeNodeComponent } from '../movie-tree-node/movie-tree-node.component';
-import { TreeNode } from '../../model/tree-node';
+import { NgFor } from '@angular/common';
+import { Component, inject, OnInit, signal } from '@angular/core';
+import { EPISODES, SEASONS, TITLES } from '../../domain/movies';
 import { DialogData } from '../../model/dialog-data';
-import { DialogComponent } from '../dialog/dialog.component'
-import { AppStore } from '../../service/app-store'
+import { AppStore } from '../../service/app-store';
+import { DialogComponent } from '../dialog/dialog.component';
+import { MovieTreeNodeComponent } from '../movie-tree-node/movie-tree-node.component';
 
 @Component({
   selector: 'app-movie-tree',
@@ -23,7 +22,7 @@ export class MovieTreeComponent implements OnInit {
   titles = TITLES;
   seasons = SEASONS;
   episodes = EPISODES;
-  
+
   searchText = signal('');
   showDialog = signal(false);
   dialogData: DialogData = {} as DialogData;

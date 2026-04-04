@@ -1,7 +1,7 @@
 :host {
     .movie-card {
         position: relative;
-        border: 1px solid #b0c4de; 
+        border: 1px solid #b0c4de;
         background: white;
         border-radius: 10px;
         padding: 10px;

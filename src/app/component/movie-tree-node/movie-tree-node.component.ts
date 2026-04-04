@@ -1,9 +1,9 @@
-import { Component, Input, Output, EventEmitter, OnInit, inject, signal, computed, Signal } from '@angular/core';
-import { NgIf, NgFor, NgStyle, NgClass } from '@angular/common';
+import { NgClass, NgFor, NgIf, NgStyle } from '@angular/common';
+import { Component, computed, EventEmitter, inject, Input, Output, signal, Signal } from '@angular/core';
+import { DialogData } from '../../model/dialog-data';
 import { TreeNode } from '../../model/tree-node';
 import { AppStore } from '../../service/app-store';
 import { TooltipWrapperComponent } from '../tooltip/tooltip-wrapper.component';
-import { DialogData } from '../../model/dialog-data';
 
 @Component({
   selector: 'app-movie-tree-node',

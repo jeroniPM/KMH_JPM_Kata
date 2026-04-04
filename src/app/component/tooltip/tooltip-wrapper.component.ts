@@ -47,5 +47,5 @@ import { Component, Input } from '@angular/core';
   `]
 })
 export class TooltipWrapperComponent {
-  @Input() text: string = ''; // Tooltip text
+  @Input() text = '';
 }

@@ -27,7 +27,7 @@ export class AppStore {
       if (this.isTitle(title_id, season_id)) {
         return titles.filter(title => title.id !== id);
       }
-  
+
       if (this.isSeason(title_id)) {
         return titles.map(title =>
           title.id !== title_id || !title.children
@@ -80,7 +80,7 @@ export class AppStore {
               }
         );
       }
-  
+
       if (this.isSeason(title_id)) {
         return titles.map(title =>
           !title.children
@@ -106,7 +106,7 @@ export class AppStore {
               }
         );
       }
-  
+
       return titles;
     });
   }
