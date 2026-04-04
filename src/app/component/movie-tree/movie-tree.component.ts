@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
+import { AppStore } from '../../core/store/app-store';
 import { EPISODES, SEASONS, TITLES } from '../../domain/movies';
 import { DialogData } from '../../model/dialog-data';
-import { AppStore } from '../../service/app-store';
 import { DialogComponent } from '../dialog/dialog.component';
 import { MovieTreeNodeComponent } from '../movie-tree-node/movie-tree-node.component';
 

@@ -1,8 +1,8 @@
 import { NgClass } from '@angular/common';
 import { Component, computed, EventEmitter, inject, Input, Output, signal, Signal } from '@angular/core';
+import { AppStore } from '../../core/store/app-store';
 import { DialogData } from '../../model/dialog-data';
 import { TreeNode } from '../../model/tree-node';
-import { AppStore } from '../../service/app-store';
 import { TooltipWrapperComponent } from '../tooltip/tooltip-wrapper.component';
 
 @Component({
