@@ -12,6 +12,12 @@ body {
   margin: 0;
 }
 
+router-outlet + *  {
+  padding: 0 16px;
+}
+
+/* Node Tree Grid */
+
 .movie-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -24,9 +30,6 @@ body {
   gap: 16px;
 }
 
-router-outlet + *  {
-  padding: 0 16px;
-}
 
 /* Text */
 
