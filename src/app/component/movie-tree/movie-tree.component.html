@@ -4,7 +4,14 @@
   @for (node of appStore.nodeTree(); track node.id) {
     <app-movie-tree-node 
       [node]="node" 
-      [searchText]="searchText">
+      [searchText]="searchText"
+      (dialogData)="setDialogData($event)">
     </app-movie-tree-node>
   }
 </div>
+
+@if (showDialog()) {
+  <app-dialog 
+    [data]="dialogData"
+    (closed)="updateShowDialog()"/>
+}

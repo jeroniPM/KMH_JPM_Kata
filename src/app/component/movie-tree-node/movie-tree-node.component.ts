@@ -1,8 +1,9 @@
-import { Component, Input, OnInit, inject, signal, computed, Signal } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, inject, signal, computed, Signal } from '@angular/core';
 import { NgIf, NgFor, NgStyle, NgClass } from '@angular/common';
 import { TreeNode } from '../../model/tree-node';
 import { AppStore } from '../../service/app-store';
 import { TooltipWrapperComponent } from '../tooltip/tooltip-wrapper.component';
+import { DialogData } from '../../model/dialog-data';
 
 @Component({
   selector: 'app-movie-tree-node',
@@ -17,6 +18,8 @@ export class MovieTreeNodeComponent {
 
   @Input() node!: TreeNode;
   @Input() searchText!: Signal<string>;
+
+  @Output() dialogData = new EventEmitter<DialogData>();
 
   private store = inject(AppStore);
 
@@ -53,6 +56,23 @@ export class MovieTreeNodeComponent {
     }
 
     this.store.addNode(this.node.id, this.node.title_id, this.node.season_id);
+  }
+
+  setDialogData(data: DialogData) {
+    this.dialogData.emit(data);
+  }
+
+  openDialog(event: MouseEvent) {
+    event.stopPropagation();
+
+    const data: DialogData = {
+      name: this.node.name,
+      id: this.node.id,
+      title_id: this.node.title_id,
+      season_id: this.node.season_id
+    };
+
+    this.dialogData.emit(data);
   }
 
   private hasMinSearchCharacters(search: string) : boolean {

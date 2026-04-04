@@ -1,8 +1,10 @@
 import { Component, OnInit, signal, inject } from '@angular/core';
 import { TITLES, SEASONS, EPISODES } from '../../domain/movies';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { MovieTreeNodeComponent } from '../movie-tree-node/movie-tree-node.component';
-import { TreeNode } from '../../model/tree-node'
+import { TreeNode } from '../../model/tree-node';
+import { DialogData } from '../../model/dialog-data';
+import { DialogComponent } from '../dialog/dialog.component'
 import { AppStore } from '../../service/app-store'
 
 @Component({
@@ -12,6 +14,7 @@ import { AppStore } from '../../service/app-store'
   imports: [
     NgFor,
     MovieTreeNodeComponent,
+    DialogComponent
   ],
   standalone: true
 })
@@ -21,9 +24,11 @@ export class MovieTreeComponent implements OnInit {
   seasons = SEASONS;
   episodes = EPISODES;
   
-  appStore = inject(AppStore)
-
   searchText = signal('');
+  showDialog = signal(false);
+  dialogData: DialogData = {} as DialogData;
+
+  appStore = inject(AppStore)
 
   ngOnInit() {
     this.appStore.buildNodeTree(TITLES, SEASONS, EPISODES);
@@ -31,5 +36,14 @@ export class MovieTreeComponent implements OnInit {
 
   updateSearchText(text: string) {
     this.searchText.set(text);
+  }
+
+  updateShowDialog() {
+    this.showDialog.update(showDialog => !showDialog);
+  }
+
+  setDialogData(data: DialogData) {
+    this.dialogData = data;
+    this.updateShowDialog();
   }
 }

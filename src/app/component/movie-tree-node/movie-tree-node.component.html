@@ -9,7 +9,7 @@
       }
       <div [ngClass]="isMatchingSearch() ? 'movie-matching-title' : ''" class="movie-title-text">{{ node.name }}</div>
     </div>
-    <tooltip-wrapper [text]="'See the movie detail'">
+    <tooltip-wrapper [text]="'See the movie detail'" (click)="openDialog($event)">
       <i class="material-icons md-36 movie-icon">{{ node.icon }}</i>
     </tooltip-wrapper>
   </div>
@@ -28,7 +28,7 @@
 @if (node.children?.length && showChildren()) {
   <div class="movie-grid">
     @for (node of node.children; track node.id) {
-      <app-movie-tree-node [node]="node" [searchText]="searchText"></app-movie-tree-node>
+      <app-movie-tree-node [node]="node" [searchText]="searchText" (dialogData)="setDialogData($event)"/>
     }
   </div>
 }
