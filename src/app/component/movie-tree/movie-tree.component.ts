@@ -1,4 +1,3 @@
-import { NgFor } from '@angular/common';
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { EPISODES, SEASONS, TITLES } from '../../domain/movies';
 import { DialogData } from '../../model/dialog-data';
@@ -11,7 +10,6 @@ import { MovieTreeNodeComponent } from '../movie-tree-node/movie-tree-node.compo
   templateUrl: './movie-tree.component.html',
   styleUrls: ['./movie-tree.component.css'],
   imports: [
-    NgFor,
     MovieTreeNodeComponent,
     DialogComponent
   ],

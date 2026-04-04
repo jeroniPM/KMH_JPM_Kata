@@ -1,18 +1,24 @@
 <div class="movie-card" (click)="updateToggle()">
+
   <div class="movie-container">
     <div class="movie-title">
       @if (node.children?.length) {
         <i class="material-icons"
            [ngClass]="showChildren() ? 'rotate-to-right': ''">
-          arrow_right
+           arrow_right
         </i>
       }
-      <div [ngClass]="isMatchingSearch() ? 'movie-matching-title' : ''" class="movie-title-text">{{ node.name }}</div>
+      <div [ngClass]="isMatchingSearch() ? 'movie-matching-title' : ''"
+           class="movie-title-text">
+           {{ node.name }}
+      </div>
     </div>
+
     <tooltip-wrapper [text]="'See the movie detail'" (click)="openDialog($event)">
       <i class="material-icons md-36 movie-icon">{{ node.icon }}</i>
     </tooltip-wrapper>
   </div>
+
   <div>
     <tooltip-wrapper [text]="'Delete this movie'">
       <i class="material-icons md-36 remove-icon" (click)="removeNode($event)">disabled_by_default</i>
@@ -23,12 +29,15 @@
       </tooltip-wrapper>
     }
   </div>
+
 </div>
 
 @if (node.children?.length && showChildren()) {
   <div class="movie-grid">
     @for (node of node.children; track node.id) {
-      <app-movie-tree-node [node]="node" [searchText]="searchText" (dialogData)="setDialogData($event)"/>
+      <app-movie-tree-node [node]="node"
+                           [searchText]="searchText"
+                           (dialogData)="setDialogData($event)"/>
     }
   </div>
 }

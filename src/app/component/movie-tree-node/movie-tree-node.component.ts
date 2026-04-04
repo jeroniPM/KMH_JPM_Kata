@@ -1,4 +1,4 @@
-import { NgClass, NgFor, NgIf, NgStyle } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { Component, computed, EventEmitter, inject, Input, Output, signal, Signal } from '@angular/core';
 import { DialogData } from '../../model/dialog-data';
 import { TreeNode } from '../../model/tree-node';
@@ -9,7 +9,7 @@ import { TooltipWrapperComponent } from '../tooltip/tooltip-wrapper.component';
   selector: 'app-movie-tree-node',
   templateUrl: './movie-tree-node.component.html',
   styleUrls: ['./movie-tree-node.component.css'],
-  imports: [NgFor, NgIf, NgStyle, NgClass, TooltipWrapperComponent],
+  imports: [NgClass, TooltipWrapperComponent],
   standalone: true
 })
 export class MovieTreeNodeComponent {
