@@ -17,7 +17,7 @@ import { DialogData } from '../../model/dialog-data';
           @if ( data.season_id ) {
             <p>Season Id: {{ data.season_id }}</p>
           }
-          <img src="https://picsum.photos/200" alt="Movie image" />
+          <img [src]="randomImageUrl" alt="Movie image" />
         <button (click)="close()">Close</button>
       </div>
     </div>
@@ -62,5 +62,9 @@ export class DialogComponent {
 
   close() {
     this.closed.emit();
+  }
+
+  get randomImageUrl(): string {
+    return `https://picsum.photos/200?random=${Math.floor(Math.random() * 1000)}`;
   }
 }
